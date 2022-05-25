@@ -3,7 +3,9 @@ using Catalog.API.Entities;
 using Catalog.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,11 +16,13 @@ namespace Catalog.API.Controllers
     {
         private readonly IProductRepository _repository;
         private readonly ILogger<CatalogController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public CatalogController(IProductRepository productRepository, ILogger<CatalogController> logger)
+        public CatalogController(IProductRepository productRepository, ILogger<CatalogController> logger, IConfiguration configuration )
         {
             _repository = productRepository;
             _logger = logger;
+            _configuration = configuration;
         }
 
         [HttpGet]

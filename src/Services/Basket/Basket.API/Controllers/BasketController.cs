@@ -2,6 +2,8 @@
 using Basket.API.Entities;
 using Basket.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -10,10 +12,12 @@ namespace Basket.API.Controllers
     public class BasketController : ApiController
     {
         private readonly IBasketRepository _repository;
+        private readonly IConfiguration _configuration;
 
-        public BasketController(IBasketRepository repository)
+        public BasketController(IBasketRepository repository, IConfiguration configuration)
         {
             _repository = repository;
+            _configuration = configuration;
         }
 
         [HttpGet("{userName}", Name = "GetBasket")]
